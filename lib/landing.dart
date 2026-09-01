@@ -28,8 +28,7 @@ class Landing extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/logo2.png',
+                  Image.asset('assets/images/logo2.png',
                     width: 130,
                     height: 80,
                   ),
@@ -248,7 +247,7 @@ class Landing extends StatelessWidget {
                 child: Column(
 
                     children: [
-                      Image.asset("assets/images/logo.jpg",
+                      Image.asset("assets/images/Ps5.jpg",
                         height: 180,width: double.infinity,
                         fit:BoxFit.cover,),
                       Padding(
@@ -256,15 +255,15 @@ class Landing extends StatelessWidget {
                           child:Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("apple airpods",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                              Text("PS5 slime",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                               Row(
                                 children: [
                                   Icon(Icons.star_border,color: Colors.orange,size: 20,),
                                   SizedBox(width: 5,),
-                                  Text("4.5 (24)",style:TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.grey),),
+                                  Text("2.5 ",style:TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.grey),),
                                 ],
                               ),
-                              Text("MK 150,320",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
+                              Text("MK 790,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
                               Container(
                                 width: double.infinity,
                                 height: 45,
@@ -306,7 +305,7 @@ class Landing extends StatelessWidget {
                     child: Column(
 
                         children: [
-                          Image.asset("assets/images/avon.jpg",
+                          Image.asset("assets/images/samsung.jpg",
                             height: 180,width: double.infinity,
                             fit:BoxFit.cover,),
                           Padding(
@@ -314,7 +313,7 @@ class Landing extends StatelessWidget {
                               child:Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("iphone 12 (256GB)",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                                  Text("samsung g s26)",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                                   Row(
                                     children: [
                                       Icon(Icons.star_border,color: Colors.orange,size: 20,),
@@ -360,7 +359,7 @@ class Landing extends StatelessWidget {
                     child: Column(
 
                         children: [
-                          Image.asset("assets/images/iphone.jpg",
+                          Image.asset("assets/images/mic.jpg",
                             height: 180,width: double.infinity,
                             fit:BoxFit.cover,),
                           Padding(
@@ -368,7 +367,7 @@ class Landing extends StatelessWidget {
                               child:Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("iphone 12 pro max",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                                  Text("microfone 12 pro",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                                   Row(
                                     children: [
                                       Icon(Icons.star_border,color: Colors.orange,size: 20,),
@@ -376,7 +375,7 @@ class Landing extends StatelessWidget {
                                       Text("4.5 (24)",style:TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.grey),),
                                     ],
                                   ),
-                                  Text("MK 150,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
+                                  Text("MK 45,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
                                   Container(
                                     width: double.infinity,
                                     height: 45,
@@ -419,7 +418,7 @@ class Landing extends StatelessWidget {
                 child: Column(
 
                     children: [
-                      Image.asset("assets/images/iphone.jpg",
+                      Image.asset("assets/images/macbook.jpg",
                         height: 180,width: double.infinity,
                         fit:BoxFit.cover,),
                       Padding(
@@ -427,7 +426,7 @@ class Landing extends StatelessWidget {
                           child:Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("iphone 12 pro max",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                              Text("macbook v12 pro",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                               Row(
                                 children: [
                                   Icon(Icons.star_border,color: Colors.orange,size: 20,),
@@ -435,7 +434,7 @@ class Landing extends StatelessWidget {
                                   Text("4.5 (24)",style:TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.grey),),
                                 ],
                               ),
-                              Text("MK 150,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
+                              Text("MK 1,150,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
                               Container(
                                 width: double.infinity,
                                 height: 45,
@@ -473,7 +472,7 @@ class Landing extends StatelessWidget {
                 child: Column(
 
                     children: [
-                      Image.asset("assets/images/avon.jpg",
+                      Image.asset("assets/images/mouse.jpg",
                         height: 180,width: double.infinity,
                         fit:BoxFit.cover,),
                       Padding(
@@ -481,15 +480,15 @@ class Landing extends StatelessWidget {
                           child:Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("iphone 12 pro max",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                              Text("wireless mouse",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                               Row(
                                 children: [
                                   Icon(Icons.star_border,color: Colors.orange,size: 20,),
                                   SizedBox(width: 5,),
-                                  Text("4.5 (24)",style:TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.grey),),
+                                  Text("2.9 (60)",style:TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.grey),),
                                 ],
                               ),
-                              Text("MK 150,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
+                              Text("MK 18,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
                               Container(
                                 width: double.infinity,
                                 height: 45,

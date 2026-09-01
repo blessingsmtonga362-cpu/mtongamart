@@ -64,6 +64,12 @@ flutter:
     - assets/images/logo2.png
     - assets/images/iphone.jpg
     - assets/images/avon.jpg
+    - assets/images/Ps5.jpg
+    - assets/images/jbl sound.jpg
+    - assets/images/samsung.jpg
+    - assets/images/mic.jpg
+    - assets/images/macbook.jpg
+    - assets/images/mouse.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
