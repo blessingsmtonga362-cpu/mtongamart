@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mtongamart/landingscreen.dart';
 import 'landing.dart';
 
 void main(){
@@ -12,7 +13,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Landing(),
+      home: Landingscreen(),
     );
   }
 }

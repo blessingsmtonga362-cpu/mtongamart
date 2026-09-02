@@ -4,69 +4,7 @@ class Landing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("MtongaMart",style: TextStyle(fontWeight: FontWeight.bold),),
-        centerTitle: true,
-        actions: [
-          //IconButton(onPressed: (){}, icon: Icon(Icons.search))
-         // ,
-        ],
-        backgroundColor: Colors.lightBlue,
-        foregroundColor: Colors.black,
-        elevation: 5,
-      ),
-      drawer: Drawer(
-        backgroundColor: Colors.white,
-
-        elevation:10,
-
-        child: Column(
-          children: [
-            DrawerHeader(
-
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/logo2.png',
-                    width: 130,
-                    height: 80,
-                  ),
-
-                   SizedBox(height: 8),
-
-                  Text(
-                    'MtongaMart',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              leading: IconButton(onPressed: (){}, icon: Icon(Icons.home,size: 30,)),
-              title: Text("Home",style: TextStyle(fontWeight: FontWeight.bold,fontSize:20),),
-              onTap: (){Navigator.pop(context);},
-            ),
-
-            ListTile(
-              leading: IconButton(onPressed: (){}, icon: Icon(Icons.info,size: 30,)),
-              title: Text("About",style: TextStyle(fontWeight: FontWeight.bold,fontSize:20),),
-              onTap: (){Navigator.pop(context);},
-            ),
-
-            ListTile(
-              leading: IconButton(onPressed: (){}, icon: Icon(Icons.settings,size: 30,)),
-              title: Text("Settings",style: TextStyle(fontWeight: FontWeight.bold,fontSize:20),),
-              onTap: (){Navigator.pop(context);},
-            )
-        ]
-        ),
-      ),
-      body:SingleChildScrollView(
+    return SingleChildScrollView(
         child:Padding(
         padding: EdgeInsets.only(top:13,left: 13,right: 13),
           child: Column(
@@ -111,6 +49,25 @@ class Landing extends StatelessWidget {
                 child: Column(
                   children: [
                     Icon(
+                      Icons.local_grocery_store,
+                      color: Colors.grey,
+                      size: 50,
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      "Groceries",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Expanded(
+                child: Column(
+                  children: [
+                    Icon(
                       Icons.checkroom,
                       color: Colors.grey,
                       size: 50,
@@ -130,32 +87,13 @@ class Landing extends StatelessWidget {
                 child: Column(
                   children: [
                     Icon(
-                      Icons.shopping_bag,
+                      Icons.devices,
                       color: Colors.grey,
                       size: 50,
                     ),
                     SizedBox(height: 5),
                     Text(
-                      "Bags",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              Expanded(
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.phone_android,
-                      color: Colors.grey,
-                      size: 50,
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      "Phones",
+                      "Electronics",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -187,7 +125,7 @@ class Landing extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color:Colors.grey,
+                color:Colors.lightBlue,
               )
             ),
             child: Column(
@@ -241,7 +179,7 @@ class Landing extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color:Colors.grey,
+                      color:Colors.lightBlue,
                     )
                 ),
                 child: Column(
@@ -299,7 +237,7 @@ class Landing extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color:Colors.grey,
+                          color:Colors.lightBlue,
                         )
                     ),
                     child: Column(
@@ -353,7 +291,7 @@ class Landing extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color:Colors.grey,
+                          color:Colors.lightBlue,
                         )
                     ),
                     child: Column(
@@ -412,7 +350,7 @@ class Landing extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color:Colors.grey,
+                      color:Colors.lightBlue,
                     )
                 ),
                 child: Column(
@@ -466,7 +404,7 @@ class Landing extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color:Colors.grey,
+                      color:Colors.lightBlue,
                     )
                 ),
                 child: Column(
@@ -515,21 +453,6 @@ class Landing extends StatelessWidget {
           )])
           //////////////////////end
       ],
-      ))),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.lightBlue,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.black,
-
-          items:[
-            BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.category_sharp),label: "Category"),
-            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),label: "Cart"),
-            BottomNavigationBarItem(icon: Icon(Icons.person),label: "Profile")
-          ]
-
-      )
-    );
+      )));
   }
 }
