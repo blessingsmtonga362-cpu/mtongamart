@@ -29,6 +29,7 @@ class _LandingscreenState extends State<Landingscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
         title: Text("MtongaMart",style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
