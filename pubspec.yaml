@@ -70,6 +70,16 @@ flutter:
     - assets/images/mic.jpg
     - assets/images/macbook.jpg
     - assets/images/mouse.jpg
+    - assets/images/flash.jpg
+    - assets/images/nike.jpg
+    - assets/images/beats.jpg
+    - assets/images/groceries1.jpg
+    - assets/images/groceries2.jpg
+    - assets/images/affordable bag.jpg
+    - assets/images/apple sound.jpg
+    - assets/images/messi1.jpg
+    - assets/images/men.jpg
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

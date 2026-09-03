@@ -21,10 +21,13 @@ class Category extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color:Colors.lightBlue,
+                      color:Color(0xFFBAE6FD),
+                      width: 1.5
                     )
                 ),
-              child:Image.asset("assets/images/jbl sound.jpg" ,width: double.infinity)
+              child:Stack(
+                  children:[Positioned.fill(child:Image.asset("assets/images/macbook.jpg" ,width: double.infinity)),
+                            Positioned(bottom: 3,left: 10,child: Text("Electronics",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.black87),),)])
             ),
             SizedBox(height: 10,),
             Row(
@@ -36,10 +39,13 @@ class Category extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color:Colors.lightBlue,
+                            color:Color(0xFFBAE6FD),
+                            width: 1.5
                         )
                     ),
-                    child:Image.asset("assets/images/mic.jpg" ,width: double.infinity)),
+                    child:Stack(
+                children:[Positioned.fill(child:Image.asset("assets/images/messi1.jpg" ,height:double.infinity,width: 60)),
+                Positioned(bottom: 3,left: 10,child: Text("Clothes",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.black),),)])),
                 ),
                 SizedBox(width: 10,),
                 Expanded(child: Container(
@@ -49,11 +55,14 @@ class Category extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color:Colors.lightBlue,
+                            color:Color(0xFFBAE6FD),
+                            width: 1.5
                         )
                     ),
-                    child:Image.asset("assets/images/samsung.jpg" ,width: double.infinity)),
-                )]
+                    child:Stack(
+                        children:[Positioned.fill(child:Image.asset("assets/images/groceries2.jpg" ,width:double.infinity)),
+                          Positioned(bottom: 5,left: 10,child: Text("Groceries",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.black),),)])
+                ))]
 
 
 
@@ -68,10 +77,13 @@ class Category extends StatelessWidget {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color:Colors.lightBlue,
+                            color:Color(0xFFBAE6FD),
+                            width: 1.5
                           )
                       ),
-                      child:Image.asset("assets/images/iphone.jpg" ,fit:BoxFit.cover,width: double.infinity)),
+                      child:Stack(
+                          children:[Positioned.fill(child:Image.asset("assets/images/nike.jpg" ,height:double.infinity,width: 60)),
+                            Positioned(bottom: 5,left: 14,child: Text("Shoes",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.black),),)])),
                   ),
                   SizedBox(width: 10,),
                   Expanded(child: Container(
@@ -81,10 +93,13 @@ class Category extends StatelessWidget {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color:Colors.lightBlue,
+                            color:Color(0xFFBAE6FD),
+                            width: 1.5
                           )
                       ),
-                      child:Image.asset("assets/images/macbook.jpg" ,width: double.infinity)),
+                      child:Stack(
+                          children:[Positioned.fill(child:Image.asset("assets/images/samsung.jpg" ,height:double.infinity,width: 60)),
+                            Positioned(bottom: 5,left: 14,child: Text("Electronics",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.black87),),)])),
                   )]
 
 
