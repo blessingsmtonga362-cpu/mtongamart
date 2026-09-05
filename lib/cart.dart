@@ -217,6 +217,10 @@ class Cart extends StatelessWidget {
                       Container(
                         height: 73,
                         width: double.infinity,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 4,
+                          vertical: 4
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white54,
                           borderRadius: BorderRadius.circular(12),
@@ -243,6 +247,10 @@ class Cart extends StatelessWidget {
                       Container(
                           height: 73,
                           width: double.infinity,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 4,
+                            vertical:  4
+                          ),
                           decoration: BoxDecoration(
                               color: Colors.white54,
                               borderRadius: BorderRadius.circular(12),
@@ -269,6 +277,10 @@ class Cart extends StatelessWidget {
                       Container(
                           height: 73,
                           width: double.infinity,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 4,
+                            vertical: 4
+                          ),
                           decoration: BoxDecoration(
                               color: Colors.white54,
                               borderRadius: BorderRadius.circular(12),
