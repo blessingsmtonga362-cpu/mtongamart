@@ -228,15 +228,14 @@ class Cart extends StatelessWidget {
                             color: Colors.grey.shade300
                           )
 
-
                           ),
                           child:Row(
                             children: [
                               ClipRRect(
                                    borderRadius:BorderRadius.circular(7),
-                                  child:Image.asset("assets/images/men.jpg",height: 90,width: 90,fit:BoxFit.fill,)),
+                                  child:Image.asset("assets/images/airtel2.jpg",height: 90,width: 90,fit:BoxFit.fill,)),
                               SizedBox(width: 70),
-                              Text("TNM Mpamba",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
+                              Text("Airtel money",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
                             ],
                             
                           )
@@ -264,7 +263,7 @@ class Cart extends StatelessWidget {
                             children: [
                               ClipRRect(
                                   borderRadius:BorderRadius.circular(7),
-                                  child:Image.asset("assets/images/men.jpg",height: 90,width: 90,fit:BoxFit.fill,)),
+                                  child:Image.asset("assets/images/tnm.jpg",height: 90,width: 90,fit:BoxFit.fill,)),
                               SizedBox(width: 70),
                               Text("TNM Mpamba",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
                             ],
@@ -294,9 +293,9 @@ class Cart extends StatelessWidget {
                             children: [
                               ClipRRect(
                                   borderRadius:BorderRadius.circular(7),
-                                  child:Image.asset("assets/images/men.jpg",height: 90,width: 90,fit:BoxFit.fill,)),
+                                  child:Image.asset("assets/images/nb.png",height: 90,width: 90,fit:BoxFit.fill,)),
                               SizedBox(width: 70),
-                              Text("TNM Mpamba",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
+                              Text("National bank",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
                             ],
 
                           )
