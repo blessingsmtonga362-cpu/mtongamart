@@ -84,7 +84,7 @@ class Profile extends StatelessWidget {
                      Text("Full Name ",style: TextStyle(color: Colors.grey.shade500,fontSize: 25,fontWeight: FontWeight.w400)),
                      TextField(
                        decoration: InputDecoration(
-                         hintText: 'Enter your full name',
+                         hintText: 'Blessings Mtonga',
 
                          filled: true,
                          fillColor: Colors.white,
@@ -178,7 +178,7 @@ class Profile extends StatelessWidget {
                      Text("Delivery Address  ",style: TextStyle(color: Colors.grey.shade500,fontSize: 25,fontWeight: FontWeight.w400)),
                      TextField(
                        decoration: InputDecoration(
-                         hintText: 'Enter your delivery address',
+                         hintText: 'Limbe ,Pacific tower floor 18',
 
                          filled: true,
                          fillColor: Colors.white,
