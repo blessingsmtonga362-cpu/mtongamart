@@ -40,7 +40,7 @@ class Profile extends StatelessWidget {
          Padding(
              padding: EdgeInsets.only(top:10,bottom:10,left:30,right: 30),
              child: Container(
-            height: 450,
+            height: 460,
             width: double.infinity,
             decoration: BoxDecoration(
              color: Colors.white,
@@ -71,8 +71,8 @@ class Profile extends StatelessWidget {
                      child:Row(
                        children: [
                          Expanded(child: Text("Personal information",style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600),)),
-                         SizedBox(width:10,),
-                         Text("Edit",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),)
+                         SizedBox(width:9),
+                         Text("Edit",style: TextStyle(fontSize: 17,fontWeight: FontWeight.w500),)
 
                        ],
                      )),
@@ -82,6 +82,7 @@ class Profile extends StatelessWidget {
                      /////////////
 
                      Text("Full Name ",style: TextStyle(color: Colors.grey.shade500,fontSize: 25,fontWeight: FontWeight.w400)),
+                     SizedBox(height: 4,),
                      TextField(
                        decoration: InputDecoration(
                          hintText: 'Blessings Mtonga',
@@ -105,15 +106,17 @@ class Profile extends StatelessWidget {
                          focusedBorder: OutlineInputBorder(
                            borderRadius: BorderRadius.circular(12),
                            borderSide: const BorderSide(
-                             color: Colors.teal,
+                             color: Colors.lightBlue,
                              width: 2,
                            ),
                          ),
                        ),
                      ),
                      ////////////
+                     SizedBox(height: 4,),
 
                      Text("Phone Number ",style: TextStyle(color: Colors.grey.shade500,fontSize: 25,fontWeight: FontWeight.w400)),
+                     SizedBox(height: 4,),
                      TextField(
                        decoration: InputDecoration(
                          hintText: '+265 992 708 855',
@@ -137,14 +140,16 @@ class Profile extends StatelessWidget {
                          focusedBorder: OutlineInputBorder(
                            borderRadius: BorderRadius.circular(12),
                            borderSide: const BorderSide(
-                             color: Colors.teal,
+                             color: Colors.lightBlue,
                              width: 2,
                            ),
                          ),
                        ),
                      ),
                      ///////////////////////
+                     SizedBox(height: 4,),
                      Text("Email Address ",style: TextStyle(color: Colors.grey.shade500,fontSize: 25,fontWeight: FontWeight.w400)),
+                     SizedBox(height: 4,),
                      TextField(
                        decoration: InputDecoration(
                          hintText: 'blessingsmtonga362@gmail.com',
@@ -168,14 +173,16 @@ class Profile extends StatelessWidget {
                          focusedBorder: OutlineInputBorder(
                            borderRadius: BorderRadius.circular(12),
                            borderSide: const BorderSide(
-                             color: Colors.teal,
+                             color: Colors.lightBlue,
                              width: 2,
                            ),
                          ),
                        ),
                      ),
 //////////////////////////////////
+                     SizedBox(height: 4,),
                      Text("Delivery Address  ",style: TextStyle(color: Colors.grey.shade500,fontSize: 25,fontWeight: FontWeight.w400)),
+                     SizedBox(height: 4,),
                      TextField(
                        decoration: InputDecoration(
                          hintText: 'Limbe ,Pacific tower floor 18',
@@ -199,7 +206,7 @@ class Profile extends StatelessWidget {
                          focusedBorder: OutlineInputBorder(
                            borderRadius: BorderRadius.circular(12),
                            borderSide: const BorderSide(
-                             color: Colors.teal,
+                             color: Colors.lightBlue,
                              width: 2,
                            ),
                          ),
