@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'models/product.dart';
 class Landing extends StatelessWidget {
   const Landing({super.key});
 
@@ -113,345 +114,118 @@ class Landing extends StatelessWidget {
           ),
           SizedBox(height: 10,),
           ///////////////start
-         Column(
-            children: [
-          Row(
-            children: [
-              Expanded(child:
-          Container(
-            height:320,
-            width: 200,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color:Colors.lightBlue,
-              )
-            ),
-            child: Column(
+          GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
 
-              children: [
-                Image.asset("assets/images/iphone.jpg",
-                height: 180,width: double.infinity,
-                fit:BoxFit.cover,),
-                Padding(
-                  padding: EdgeInsets.only(top:10,left: 15,right: 10),
-                child:Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            itemCount: products.length,
+
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              childAspectRatio: 0.65,
+            ),
+
+            itemBuilder: (context, index) {
+
+              final product = products[index];
+
+              return Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Colors.lightBlue,
+                  ),
+                ),
+
+                child: Column(
                   children: [
-                Text("iphone 12 pro max",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                Row(
-                  children: [
-                    Icon(Icons.star_border,color: Colors.orange,size: 20,),
-                    SizedBox(width: 5,),
-                    Text("4.5 (24)",style:TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.grey),),
+
+                    Image.asset(
+                      product.image,
+                      height: 180,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 10,
+                        left: 15,
+                        right: 10,
+                      ),
+
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+
+                          Text(
+                            product.name,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+
+                          Row(
+                            children: [
+
+                              Icon(
+                                Icons.star_border,
+                                color: Colors.orange,
+                                size: 20,
+                              ),
+
+                              SizedBox(width: 5),
+
+                              Text(
+                                "${product.rating} (${product.reviews})",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Text(
+                            "MK ${product.price}",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+
+                          Container(
+                            width: double.infinity,
+                            height: 45,
+
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+
+                            child: Center(
+                              child: Text(
+                                "Add",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-                Text("MK 150,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
-                    Container(
-                      width: double.infinity,
-                      height: 45,
+              );
+            },
+          )
 
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-
-                      child: Center(
-                        child: Text(
-                          " Add",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],)
-            ),
-          ]),
-          ),),
-              SizedBox(width: 10,),
-              Expanded(child:
-              Container(
-                height:320,
-                width: 200,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color:Colors.lightBlue,
-                    )
-                ),
-                child: Column(
-
-                    children: [
-                      Image.asset("assets/images/Ps5.jpg",
-                        height: 180,width: double.infinity,
-                        fit:BoxFit.cover,),
-                      Padding(
-                          padding: EdgeInsets.only(top:10,left: 15,right: 10),
-                          child:Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("PS5 slime",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                              Row(
-                                children: [
-                                  Icon(Icons.star_border,color: Colors.orange,size: 20,),
-                                  SizedBox(width: 5,),
-                                  Text("2.5 ",style:TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.grey),),
-                                ],
-                              ),
-                              Text("MK 790,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
-                              Container(
-                                width: double.infinity,
-                                height: 45,
-
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[200],
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-
-                                child: Center(
-                                  child: Text(
-                                    " Add",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],)
-                      ),
-                    ]),
-              ),)
-            ],
-          ),
-        ///////////////////////////////////////start
-              Row(
-                children: [
-                  Expanded(child:
-                  Container(
-                    height:320,
-                    width: 200,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color:Colors.lightBlue,
-                        )
-                    ),
-                    child: Column(
-
-                        children: [
-                          Image.asset("assets/images/samsung.jpg",
-                            height: 180,width: double.infinity,
-                            fit:BoxFit.cover,),
-                          Padding(
-                              padding: EdgeInsets.only(top:10,left: 15,right: 10),
-                              child:Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("samsung g s26)",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                                  Row(
-                                    children: [
-                                      Icon(Icons.star_border,color: Colors.orange,size: 20,),
-                                      SizedBox(width: 5,),
-                                      Text("4.5 (24)",style:TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.grey),),
-                                    ],
-                                  ),
-                                  Text("MK 150,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
-                                  Container(
-                                    width: double.infinity,
-                                    height: 45,
-
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey[200],
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-
-                                    child: Center(
-                                      child: Text(
-                                        " Add",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],)
-                          ),
-                        ]),
-                  ),),
-                  SizedBox(width: 10,),
-                  Expanded(child:
-                  Container(
-                    height:320,
-                    width: 200,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color:Colors.lightBlue,
-                        )
-                    ),
-                    child: Column(
-
-                        children: [
-                          Image.asset("assets/images/mic.jpg",
-                            height: 180,width: double.infinity,
-                            fit:BoxFit.cover,),
-                          Padding(
-                              padding: EdgeInsets.only(top:10,left: 15,right: 10),
-                              child:Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("microfone 12 pro",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                                  Row(
-                                    children: [
-                                      Icon(Icons.star_border,color: Colors.orange,size: 20,),
-                                      SizedBox(width: 5,),
-                                      Text("4.5 (24)",style:TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.grey),),
-                                    ],
-                                  ),
-                                  Text("MK 45,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
-                                  Container(
-                                    width: double.infinity,
-                                    height: 45,
-
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey[200],
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-
-                                    child: Center(
-                                      child: Text(
-                                        " Add",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],)
-                          ),
-                        ]),
-                  ),)
-                ],
-              ),
-        ////////////////////////////////////////end
-
-          Row(
-            children: [
-              Expanded(child:
-              Container(
-                height:320,
-                width: 200,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color:Colors.lightBlue,
-                    )
-                ),
-                child: Column(
-
-                    children: [
-                      Image.asset("assets/images/macbook.jpg",
-                        height: 180,width: double.infinity,
-                        fit:BoxFit.cover,),
-                      Padding(
-                          padding: EdgeInsets.only(top:10,left: 15,right: 10),
-                          child:Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("macbook v12 pro",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                              Row(
-                                children: [
-                                  Icon(Icons.star_border,color: Colors.orange,size: 20,),
-                                  SizedBox(width: 5,),
-                                  Text("4.5 (24)",style:TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.grey),),
-                                ],
-                              ),
-                              Text("MK 1,150,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
-                              Container(
-                                width: double.infinity,
-                                height: 45,
-
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[200],
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-
-                                child: Center(
-                                  child: Text(
-                                    " Add",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],)
-                      ),
-                    ]),
-              ),),
-              SizedBox(width: 10,),
-              Expanded(child:
-              Container(
-                height:320,
-                width: 200,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color:Colors.lightBlue,
-                    )
-                ),
-                child: Column(
-
-                    children: [
-                      Image.asset("assets/images/mouse.jpg",
-                        height: 180,width: double.infinity,
-                        fit:BoxFit.cover,),
-                      Padding(
-                          padding: EdgeInsets.only(top:10,left: 15,right: 10),
-                          child:Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("wireless mouse",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                              Row(
-                                children: [
-                                  Icon(Icons.star_border,color: Colors.orange,size: 20,),
-                                  SizedBox(width: 5,),
-                                  Text("2.9 (60)",style:TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.grey),),
-                                ],
-                              ),
-                              Text("MK 18,000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,)),
-                              Container(
-                                width: double.infinity,
-                                height: 45,
-
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[200],
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-
-                                child: Center(
-                                  child: Text(
-                                    " Add",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],)
-                      ),
-                    ]),
-              ),)
-            ],
-          )])
-          //////////////////////end
       ],
       )));
   }
