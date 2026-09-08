@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'cards/category_card.dart';
+import 'models/category.dart';
 class Category extends StatelessWidget {
   const Category({super.key});
 
@@ -14,97 +15,41 @@ class Category extends StatelessWidget {
             Text("Shop by Category",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 26),),
             Text("Find exactly what you`re looking for .",style: TextStyle(color: Colors.grey,fontSize: 15)),
             SizedBox(height: 10,),
-            Container(
-                height:320,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color:Color(0xFFBAE6FD),
-                      width: 1.5
-                    )
-                ),
-              child:Stack(
-                  children:[Positioned.fill(child:Image.asset("assets/images/macbook.jpg" ,width: double.infinity)),
-                            Positioned(bottom: 3,left: 10,child: Text("Electronics",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.black87),),)])
+            SizedBox(
+              height: 320,
+              width: double.infinity,
+              child: CategoryCard(
+                category: categories[0],
+              ),
             ),
+
             SizedBox(height: 10,),
-            Row(
-              children: [
-                Expanded(child: Container(
-                    height:200,
+          ///////////////////////////////////////
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
 
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                            color:Color(0xFFBAE6FD),
-                            width: 1.5
-                        )
-                    ),
-                    child:Stack(
-                children:[Positioned.fill(child:Image.asset("assets/images/messi1.jpg" ,height:double.infinity,width: 60)),
-                Positioned(bottom: 3,left: 10,child: Text("Clothes",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.black),),)])),
-                ),
-                SizedBox(width: 10,),
-                Expanded(child: Container(
-                    height:200,
+              gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 1,
+              ),
 
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                            color:Color(0xFFBAE6FD),
-                            width: 1.5
-                        )
-                    ),
-                    child:Stack(
-                        children:[Positioned.fill(child:Image.asset("assets/images/groceries2.jpg" ,width:double.infinity)),
-                          Positioned(bottom: 5,left: 10,child: Text("Groceries",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.black),),)])
-                ))]
+              itemCount: categories.length - 1,
 
+              itemBuilder: (context, index) {
 
+                // index starts from 0
+                // but we want to start from category number 1
+                final category = categories[index + 1];
 
+                return CategoryCard(
+                  category: category,
+                );
+              },
             ),
-            SizedBox(height: 10,),
-            Row(
-                children: [
-                  Expanded(child: Container(
-                      height:200,
-
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color:Color(0xFFBAE6FD),
-                            width: 1.5
-                          )
-                      ),
-                      child:Stack(
-                          children:[Positioned.fill(child:Image.asset("assets/images/nike.jpg" ,height:double.infinity,width: 60)),
-                            Positioned(bottom: 5,left: 14,child: Text("Shoes",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.black),),)])),
-                  ),
-                  SizedBox(width: 10,),
-                  Expanded(child: Container(
-                      height:200,
-
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color:Color(0xFFBAE6FD),
-                            width: 1.5
-                          )
-                      ),
-                      child:Stack(
-                          children:[Positioned.fill(child:Image.asset("assets/images/samsung.jpg" ,height:double.infinity,width: 60)),
-                            Positioned(bottom: 5,left: 14,child: Text("Electronics",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.black87),),)])),
-                  )]
-
-
-
-            )
 
           ],
         ),
