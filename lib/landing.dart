@@ -124,7 +124,7 @@ class Landing extends StatelessWidget {
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
-              childAspectRatio: 0.65,
+              childAspectRatio: 0.55,
             ),
 
             itemBuilder: (context, index) {
