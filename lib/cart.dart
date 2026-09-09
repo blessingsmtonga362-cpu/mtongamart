@@ -30,64 +30,74 @@ class Cart extends StatelessWidget {
                       SizedBox(height: 10,),
                       /////////////////
                       // Dynamic cart items
-                      ...cart.items.map(
-                            (item) {
-                          return Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Row(
-                              children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: cart.items.length,
+                          itemBuilder: (context, index) {
 
-                                // Product Image
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    item.product.image,
-                                    height: 110,
-                                    width: 100,
-                                    fit: BoxFit.cover,
+                            final item = cart.items[index];
+
+                            return Padding(
+                              padding: const EdgeInsets.all(10),
+
+                              child: Row(
+                                children: [
+
+                                  // Product image
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.asset(
+                                      item.product.image,
+                                      height: 80,
+                                      width: 75,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                ),
 
-                                const SizedBox(width: 10),
+                                  const SizedBox(width: 10),
 
-                                // Product Name + Quantity
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        item.product.name,
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500,
+                                  // Product name + quantity
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+
+                                        Text(
+                                          item.product.name,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
-                                      ),
 
-                                      Text(
-                                        "Qty : ${item.quantity}",
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
+                                        const SizedBox(height: 5),
+
+                                        Text(
+                                          "Qty : ${item.quantity}",
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
 
-                                // Product Total
-                                Text(
-                                  "MK ${(item.product.price * item.quantity).toStringAsFixed(0)}",
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
+                                  // Product total
+                                  Text(
+                                    "MK ${(item.product.price * item.quantity).toStringAsFixed(0)}",
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                       ),
 
                       ////////////////
