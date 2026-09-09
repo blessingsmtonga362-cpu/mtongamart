@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../data/cart.dart';
 class Cart extends StatelessWidget {
   const Cart({super.key});
 
@@ -27,46 +28,69 @@ class Cart extends StatelessWidget {
                     children: [
                       Text("Order Summary",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.black),),
                       SizedBox(height: 10,),
-                      Padding(padding: EdgeInsets.all(10),
-                      child: Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                              child: Image.asset("assets/images/iphone.jpg",height: 110,width: 100,fit: BoxFit.cover),
-                          ),
-
-                          SizedBox(width: 10,),
-                          Expanded(child: Column(
+                      /////////////////
+                      // Dynamic cart items
+                      ...cart.items.map(
+                            (item) {
+                          return Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
                               children: [
-                                Text("iphone 12 pro max",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500),),
-                               // Text("",style: TextStyle(color: Colors.black26,fontSize: 15,fontWeight: FontWeight.w500)),
-                                Text("Qty : 2",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.w400))]) ),
-                          Expanded(child: Text("MK 210, 000",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),))
-                        ],
-                      ),),
-                      Padding(padding: EdgeInsets.all(10),
-                        child: Row(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset("assets/images/nike.jpg",height: 110,width: 100,fit: BoxFit.cover),
+
+                                // Product Image
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.asset(
+                                    item.product.image,
+                                    height: 110,
+                                    width: 100,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+
+                                const SizedBox(width: 10),
+
+                                // Product Name + Quantity
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        item.product.name,
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+
+                                      Text(
+                                        "Qty : ${item.quantity}",
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+
+                                // Product Total
+                                Text(
+                                  "MK ${(item.product.price * item.quantity).toStringAsFixed(0)}",
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(width: 10,),
-                            Expanded(child: Column(
-                                children: [
-                                  Text("Nike air jordan 1's",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500),),
-                                  Text("Qty : 1",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.w400))]) ),
-                            Expanded(child: Text("MK 75, 000",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),))
-                          ],
-                        ),),
-                    Padding(padding: EdgeInsets.all(10),child:Row(
+                          );
+                        },
+                      ),
 
-                        children: [
-                          Expanded(child: Text("SubTotal ",style: TextStyle(fontStyle: FontStyle.italic,fontWeight: FontWeight.w900))),
-                          Expanded(child: Text("MK 285, 000"))
-
-                        ]
-                      ),),
+                      ////////////////
                       Padding(padding: EdgeInsets.all(10),
                         child:
                         Row(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
+import '../data/cart.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -97,20 +98,24 @@ class ProductCard extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 5,),
-                Container(
-                  width: double.infinity,
-                  height: 45,
-
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-
-                  child: Center(
-                    child: Text(
-                      "Add",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                InkWell(
+                  onTap: () {
+                    cart.addProduct(product);
+                  },
+                  borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    width: double.infinity,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "Add",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
