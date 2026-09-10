@@ -5,6 +5,14 @@ class Cart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double subtotal=0;
+    for(var item in cart.items){
+      subtotal+=item.product.price*item.quantity;
+    }
+    double delivery=2000;
+    double total=subtotal+delivery;
+
+
     return  SingleChildScrollView(
         child: Padding(
         padding: EdgeInsetsGeometry.all(10),
@@ -34,7 +42,6 @@ class Cart extends StatelessWidget {
                         child: ListView.builder(
                           itemCount: cart.items.length,
                           itemBuilder: (context, index) {
-
                             final item = cart.items[index];
 
                             return Padding(
@@ -100,13 +107,23 @@ class Cart extends StatelessWidget {
                         ),
                       ),
 
+                      /////////////////////////
+                      Padding(padding: EdgeInsets.all(10),
+                        child:
+                        Row(
+                            children: [
+                              Expanded(child: Text("Subtotal ",style: TextStyle(fontStyle: FontStyle.italic,fontWeight: FontWeight.w900),)),
+                              Expanded(child: Text("MK ${subtotal.toStringAsFixed(0)}"))
+
+                            ]
+                        ),),
                       ////////////////
                       Padding(padding: EdgeInsets.all(10),
                         child:
                         Row(
                             children: [
                               Expanded(child: Text("Delivery ",style: TextStyle(fontStyle: FontStyle.italic,fontWeight: FontWeight.w900),)),
-                              Expanded(child: Text("MK 2,000"))
+                              Expanded(child: Text("MK ${delivery.toStringAsFixed(0)}"))
 
                             ]
                         ),),
@@ -115,7 +132,7 @@ class Cart extends StatelessWidget {
                         Row(
                             children: [
                               Expanded(child: Text("Total Price ",style: TextStyle(fontStyle: FontStyle.italic,fontWeight: FontWeight.w900),)),
-                              Expanded(child: Text("MK 287,000"))
+                              Expanded(child: Text("MK ${total.toStringAsFixed(0)}"))
 
                             ]
                         ),)
