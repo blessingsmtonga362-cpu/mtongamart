@@ -25,92 +25,11 @@ class Landing extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10,),
-          Text("Shop by Category",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.home_repair_service,
-                      color: Colors.grey,
-                      size: 50,
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      "Shoes",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              Expanded(
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.local_grocery_store,
-                      color: Colors.grey,
-                      size: 50,
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      "Groceries",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              Expanded(
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.checkroom,
-                      color: Colors.grey,
-                      size: 50,
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      "Clothes",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              Expanded(
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.devices,
-                      color: Colors.grey,
-                      size: 50,
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      "Electronics",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Featured products",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 25)),
-              Text("see all >",style: TextStyle(fontWeight: FontWeight(500),fontSize: 25))
+              Text("see all >",style: TextStyle(fontWeight: FontWeight(500),fontSize: 25)),
             ]
           ),
           SizedBox(height: 10,),
