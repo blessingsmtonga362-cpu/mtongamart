@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import '../data/cart.dart';
-class Cart extends StatelessWidget {
+
+class Cart extends StatefulWidget {
   const Cart({super.key});
+
+  @override
+  State<Cart> createState() => _CartState();
+}
+
+class _CartState extends State<Cart> {
+  String selectedDelivery = "shop";
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +17,14 @@ class Cart extends StatelessWidget {
     for(var item in cart.items){
       subtotal+=item.product.price*item.quantity;
     }
-    double delivery=2000;
+
+
+    double delivery;
+    if(selectedDelivery=="shop"){
+      delivery=0;
+    }else{
+      delivery=2100;
+    }
     double total=subtotal+delivery;
 
 
@@ -132,7 +147,7 @@ class Cart extends StatelessWidget {
                         Row(
                             children: [
                               Expanded(child: Text("Total Price ",style: TextStyle(fontStyle: FontStyle.italic,fontWeight: FontWeight.w900),)),
-                              Expanded(child: Text("MK ${total.toStringAsFixed(0)}"))
+                              Expanded(child: Text("MK ${total.toStringAsFixed(2)}"))
 
                             ]
                         ),)
@@ -145,96 +160,162 @@ class Cart extends StatelessWidget {
             SizedBox(height: 10,),
             ////////////////
             Container(
-              height: 200,
               width: double.infinity,
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
                 border: Border.all(
                   color: Colors.grey.shade300,
                   width: 1.5,
                 ),
-                color: Colors.white,
               ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
 
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-
-                  children: [
-
-                    // Title
-                    const Text(
-                      "Delivery Mode",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                  const Text(
+                    "Delivery Mode",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
+                  ),
 
-                    const SizedBox(height: 8),
+                  const SizedBox(height: 5),
 
-                    const Text(
-                      "Choose how you want to receive your order",
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
+                  Text(
+                    "Choose how you want to receive your order",
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
                     ),
+                  ),
 
-                    const SizedBox(height: 20),
+                  const SizedBox(height: 15),
 
-                    // Store option
-                    Container(
-                      height: 55,
-                      width: double.infinity,
+                  // SHOP OPTION
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        selectedDelivery = "shop";
+                      });
+                    },
+                    child: Row(
+                      children: [
 
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                      ),
-
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-
-                        border: Border.all(
-                          color: Colors.grey.shade300,
+                        Radio<String>(
+                          value: "shop",
+                          activeColor: const Color(0xFF0284C7),
+                          groupValue: selectedDelivery,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedDelivery = value!;
+                            });
+                          },
                         ),
 
-                        color: Colors.grey.shade100,
-                      ),
+                        const Icon(
+                          Icons.store,
+                          size: 25,
+                        ),
 
-                      child: Row(
-                        children: [
+                        const SizedBox(width: 10),
 
-                          const Icon(
-                            Icons.store,
-                            color: Colors.green,
-                            size: 28,
-                          ),
-
-                          const SizedBox(width: 12),
-
-                          const Expanded(
-                            child: Text(
-                              "Limbe Store",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Take at Shop",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
+                              Text(
+                                "Collect your order from our shop",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
                           ),
+                        ),
 
-
-                        ],
-                      ),
+                        const Text(
+                          "FREE",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+
+                  const Divider(),
+
+                  // COURIER OPTION
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        selectedDelivery = "courier";
+                      });
+                    },
+                    child: Row(
+                      children: [
+
+                        Radio<String>(
+                          value: "courier",
+                          activeColor: const Color(0xFF0284C7),
+                          groupValue: selectedDelivery,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedDelivery = value!;
+                            });
+                          },
+                        ),
+
+                        const Icon(
+                          Icons.delivery_dining,
+                          size: 25,
+                        ),
+
+                        const SizedBox(width: 10),
+
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Courier Delivery",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                "Have your order delivered to you",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        const Text(
+                          "MK 2,100",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: 10,),
             ///////
             Container(
                 height: 350,
