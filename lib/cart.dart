@@ -13,437 +13,352 @@ class _CartState extends State<Cart> {
 
   @override
   Widget build(BuildContext context) {
-    double subtotal=0;
-    for(var item in cart.items){
-      subtotal+=item.product.price*item.quantity;
-    }
+    return ListenableBuilder(
+      listenable: cart,
+      builder: (context, child) {
+        double subtotal = 0;
+        for (var item in cart.items) {
+          subtotal += item.product.price * item.quantity;
+        }
 
+        double delivery;
+        if (selectedDelivery == "shop") {
+          delivery = 0;
+        } else {
+          delivery = 2100;
+        }
+        double total = subtotal + delivery;
 
-    double delivery;
-    if(selectedDelivery=="shop"){
-      delivery=0;
-    }else{
-      delivery=2100;
-    }
-    double total=subtotal+delivery;
-
-
-    return  SingleChildScrollView(
-        child: Padding(
-        padding: EdgeInsetsGeometry.all(10),
-      child:Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-                height: 450,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                 border: BoxBorder.all(
-                   color: Colors.grey.shade300,
-                   width: 1.5
-                 ),
-                color: Colors.white54,
-                ),
-
-                  child:Column(
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // =========================
+                // ORDER SUMMARY CARD
+                // =========================
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: const Color(0xFFE2E8F0),
+                      width: 1.5,
+                    ),
+                    color: Colors.white,
+                  ),
+                  child: Column(
                     children: [
-                      Text("Order Summary",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.black),),
-                      SizedBox(height: 10,),
-                      /////////////////
-                      // Dynamic cart items
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: cart.items.length,
-                          itemBuilder: (context, index) {
-                            final item = cart.items[index];
-
-                            return Padding(
-                              padding: const EdgeInsets.all(10),
-
-                              child: Row(
-                                children: [
-
-                                  // Product image
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(
-                                      item.product.image,
-                                      height: 80,
-                                      width: 75,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-
-                                  const SizedBox(width: 10),
-
-                                  // Product name + quantity
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-
-                                        Text(
-                                          item.product.name,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: const TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-
-                                        const SizedBox(height: 5),
-
-                                        Text(
-                                          "Qty : ${item.quantity}",
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-
-                                  // Product total
-                                  Text(
-                                    "MK ${(item.product.price * item.quantity).toStringAsFixed(0)}",
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: Text(
+                          "Order Summary",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
+                      const SizedBox(height: 10),
 
-                      /////////////////////////
-                      Padding(padding: EdgeInsets.all(10),
-                        child:
-                        Row(
-                            children: [
-                              Expanded(child: Text("Subtotal ",style: TextStyle(fontStyle: FontStyle.italic,fontWeight: FontWeight.w900),)),
-                              Expanded(child: Text("MK ${subtotal.toStringAsFixed(0)}"))
+                      // Cart Items List
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: cart.items.length,
+                        itemBuilder: (context, index) {
+                          final item = cart.items[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.asset(
+                                    item.product.image,
+                                    height: 70,
+                                    width: 70,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        item.product.name,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Row(
+                                        children: [
+                                          _qtyButton(
+                                            icon: Icons.remove,
+                                            onTap: () =>
+                                                cart.decrementQuantity(item),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 10),
+                                            child: Text(
+                                              "${item.quantity}",
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          _qtyButton(
+                                            icon: Icons.add,
+                                            onTap: () =>
+                                                cart.incrementQuantity(item),
+                                          ),
+                                          const Spacer(),
+                                          IconButton(
+                                            onPressed: () =>
+                                                cart.removeItem(item),
+                                            icon: const Icon(
+                                              Icons.delete_outline,
+                                              color: Colors.redAccent,
+                                              size: 20,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  "MK ${(item.product.price * item.quantity).toStringAsFixed(0)}",
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
 
-                            ]
-                        ),),
-                      ////////////////
-                      Padding(padding: EdgeInsets.all(10),
-                        child:
-                        Row(
-                            children: [
-                              Expanded(child: Text("Delivery ",style: TextStyle(fontStyle: FontStyle.italic,fontWeight: FontWeight.w900),)),
-                              Expanded(child: Text("MK ${delivery.toStringAsFixed(0)}"))
+                      const Divider(),
 
-                            ]
-                        ),),
-                      Padding(padding: EdgeInsets.all(10),
-                        child:
-                        Row(
-                            children: [
-                              Expanded(child: Text("Total Price ",style: TextStyle(fontStyle: FontStyle.italic,fontWeight: FontWeight.w900),)),
-                              Expanded(child: Text("MK ${total.toStringAsFixed(2)}"))
-
-                            ]
-                        ),)
-
-                    ]
-
-                  )
-
-            ),
-            SizedBox(height: 10,),
-            ////////////////
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(
-                  color: Colors.grey.shade300,
-                  width: 1.5,
+                      // Price Breakdown
+                      Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Column(
+                          children: [
+                            _priceRow("Subtotal", subtotal),
+                            const SizedBox(height: 8),
+                            _priceRow("Delivery", delivery),
+                            const Divider(height: 20),
+                            _priceRow("Total", total, isTotal: true),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+
+                const SizedBox(height: 20),
+
+                // =========================
+                // DELIVERY MODE
+                // =========================
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: const Color(0xFFE2E8F0),
+                      width: 1.5,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Delivery Mode",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      _deliveryOption(
+                        title: "Take at Shop",
+                        subtitle: "Collect your order from our shop",
+                        value: "shop",
+                        price: "FREE",
+                        icon: Icons.store,
+                      ),
+                      const Divider(),
+                      _deliveryOption(
+                        title: "Courier Delivery",
+                        subtitle: "Have your order delivered to you",
+                        value: "courier",
+                        price: "MK 2,100",
+                        icon: Icons.delivery_dining,
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                // =========================
+                // PAYMENT MODE
+                // =========================
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: const Color(0xFFE2E8F0),
+                      width: 1.5,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Mode of Payment",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      _paymentOption("Airtel Money", "assets/images/airtel2.jpg"),
+                      const SizedBox(height: 10),
+                      _paymentOption("TNM Mpamba", "assets/images/tnm.jpg"),
+                      const SizedBox(height: 10),
+                      _paymentOption("National Bank", "assets/images/nb.png"),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 30),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  // =====================================================
+  // HELPER WIDGETS
+  // =====================================================
+
+  Widget _qtyButton({required IconData icon, required VoidCallback onTap}) {
+    return Material(
+      color: Colors.grey.shade100,
+      borderRadius: BorderRadius.circular(8),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          padding: const EdgeInsets.all(4),
+          child: Icon(icon, size: 18, color: const Color(0xFF0F172A)),
+        ),
+      ),
+    );
+  }
+
+  Widget _priceRow(String label, double amount, {bool isTotal = false}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: isTotal ? 18 : 15,
+            fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
+            color: isTotal ? Colors.black : Colors.grey.shade700,
+          ),
+        ),
+        Text(
+          "MK ${amount.toStringAsFixed(isTotal ? 2 : 0)}",
+          style: TextStyle(
+            fontSize: isTotal ? 18 : 15,
+            fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
+            color: isTotal ? const Color(0xFF10B981) : Colors.black,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _deliveryOption({
+    required String title,
+    required String subtitle,
+    required String value,
+    required String price,
+    required IconData icon,
+  }) {
+    return InkWell(
+      onTap: () => setState(() => selectedDelivery = value),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          children: [
+            Radio<String>(
+              value: value,
+              activeColor: const Color(0xFF10B981),
+              groupValue: selectedDelivery,
+              onChanged: (v) => setState(() => selectedDelivery = v!),
+            ),
+            Icon(icon, size: 24, color: const Color(0xFF0F172A)),
+            const SizedBox(width: 12),
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                  const Text(
-                    "Delivery Mode",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-
-                  const SizedBox(height: 5),
-
-                  Text(
-                    "Choose how you want to receive your order",
-                    style: TextStyle(
-                      color: Colors.grey.shade600,
-                    ),
-                  ),
-
-                  const SizedBox(height: 15),
-
-                  // SHOP OPTION
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        selectedDelivery = "shop";
-                      });
-                    },
-                    child: Row(
-                      children: [
-
-                        Radio<String>(
-                          value: "shop",
-                          activeColor: const Color(0xFF0284C7),
-                          groupValue: selectedDelivery,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedDelivery = value!;
-                            });
-                          },
-                        ),
-
-                        const Icon(
-                          Icons.store,
-                          size: 25,
-                        ),
-
-                        const SizedBox(width: 10),
-
-                        const Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Take at Shop",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                "Collect your order from our shop",
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        const Text(
-                          "FREE",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const Divider(),
-
-                  // COURIER OPTION
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        selectedDelivery = "courier";
-                      });
-                    },
-                    child: Row(
-                      children: [
-
-                        Radio<String>(
-                          value: "courier",
-                          activeColor: const Color(0xFF0284C7),
-                          groupValue: selectedDelivery,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedDelivery = value!;
-                            });
-                          },
-                        ),
-
-                        const Icon(
-                          Icons.delivery_dining,
-                          size: 25,
-                        ),
-
-                        const SizedBox(width: 10),
-
-                        const Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Courier Delivery",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                "Have your order delivered to you",
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        const Text(
-                          "MK 2,100",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text(subtitle,
+                      style: const TextStyle(fontSize: 12, color: Colors.grey)),
                 ],
               ),
             ),
-            ///////
-            Container(
-                height: 350,
-                width: double.infinity,
+            Text(price, style: const TextStyle(fontWeight: FontWeight.bold)),
+          ],
+        ),
+      ),
+    );
+  }
 
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: BoxBorder.all(
-                      color: Colors.grey.shade300,
-                      width: 1.5
-                  ),
-                  color: Colors.white54,
-                ),
-
-                child:Padding(padding: EdgeInsets.all(10),
-                child:
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Mode of Payment",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.black),),
-                      SizedBox(height: 10,),
-                      Text(
-                        "Choose the mode of Payment ",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
-                      ),
-
-                      SizedBox(height: 10,),
-                      Container(
-                        height: 73,
-                        width: double.infinity,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 4,
-                          vertical: 4
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white54,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.grey.shade300
-                          )
-
-                          ),
-                          child:Row(
-                            children: [
-                              ClipRRect(
-                                   borderRadius:BorderRadius.circular(7),
-                                  child:Image.asset("assets/images/airtel2.jpg",height: 90,width: 90,fit:BoxFit.fill,)),
-                              SizedBox(width: 70),
-                              Text("Airtel money",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
-                            ],
-                            
-                          )
-                        ),
-
-                      SizedBox(height: 10,),
-                      /////////////////
-                      Container(
-                          height: 73,
-                          width: double.infinity,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 4,
-                            vertical:  4
-                          ),
-                          decoration: BoxDecoration(
-                              color: Colors.white54,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                  color: Colors.grey.shade300
-                              )
-
-
-                          ),
-                          child:Row(
-                            children: [
-                              ClipRRect(
-                                  borderRadius:BorderRadius.circular(7),
-                                  child:Image.asset("assets/images/tnm.jpg",height: 90,width: 90,fit:BoxFit.fill,)),
-                              SizedBox(width: 70),
-                              Text("TNM Mpamba",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
-                            ],
-
-                          )
-                      ),
-
-                      SizedBox(height: 10,),
-                      /////////////////////////
-                      Container(
-                          height: 73,
-                          width: double.infinity,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 4,
-                            vertical: 4
-                          ),
-                          decoration: BoxDecoration(
-                              color: Colors.white54,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                  color: Colors.grey.shade300
-                              )
-
-
-                          ),
-                          child:Row(
-                            children: [
-                              ClipRRect(
-                                  borderRadius:BorderRadius.circular(7),
-                                  child:Image.asset("assets/images/nb.png",height: 90,width: 90,fit:BoxFit.fill,)),
-                              SizedBox(width: 70),
-                              Text("National bank",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
-                            ],
-
-                          )
-                      ),
-
-
-
-
-                    ])
-
-                )
-
-
-
-            )]
-    ))));
+  Widget _paymentOption(String name, String assetPath) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: Colors.grey.shade200),
+      ),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(assetPath, height: 40, width: 40, fit: BoxFit.cover),
+          ),
+          const SizedBox(width: 15),
+          Text(
+            name,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          ),
+          const Spacer(),
+          const Icon(Icons.arrow_forward_ios, size: 14, color: Colors.grey),
+        ],
+      ),
+    );
   }
 }
 

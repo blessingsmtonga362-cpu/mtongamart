@@ -17,7 +17,7 @@ class ProductCard extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: const Color(0xFFBAE6FD),
+          color: const Color(0xFFE2E8F0),
           width: 1.5,
         ),
       ),
@@ -65,7 +65,7 @@ class ProductCard extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
-                    color: Colors.green,
+                    color: Color(0xFF10B981),
                   ),
                 ),
 
@@ -98,22 +98,22 @@ class ProductCard extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 5,),
-                InkWell(
-                  onTap: () {
-                    cart.addProduct(product);
-                  },
+                Material(
+                  color: const Color(0xFF10B981),
                   borderRadius: BorderRadius.circular(8),
-                  child: Container(
-                    width: double.infinity,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Center(
-                      child: Text(
+                  child: InkWell(
+                    onTap: () {
+                      cart.addProduct(product);
+                    },
+                    borderRadius: BorderRadius.circular(8),
+                    child: Container(
+                      width: double.infinity,
+                      height: 45,
+                      alignment: Alignment.center,
+                      child: const Text(
                         "Add",
                         style: TextStyle(
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

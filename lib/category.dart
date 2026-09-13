@@ -12,9 +12,23 @@ class Category extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Shop by Category",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 26),),
-            Text("Find exactly what you`re looking for .",style: TextStyle(color: Colors.grey,fontSize: 15)),
-            SizedBox(height: 10,),
+            const Text(
+              "Shop by Category",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 28,
+                color: Color(0xFF0F172A),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              "Find exactly what you're looking for.",
+              style: TextStyle(
+                color: Colors.grey.shade600,
+                fontSize: 15,
+              ),
+            ),
+            const SizedBox(height: 20),
             SizedBox(
               height: 320,
               width: double.infinity,
@@ -23,7 +37,7 @@ class Category extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 10,),
+            const SizedBox(height: 15),
           ///////////////////////////////////////
             GridView.builder(
               shrinkWrap: true,

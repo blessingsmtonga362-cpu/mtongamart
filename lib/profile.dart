@@ -31,25 +31,30 @@ class Profile extends StatelessWidget {
                     Positioned(
                       bottom: 0,
                       right: 0,
-                      child: GestureDetector(
-                        onTap: () {
-                          // Change profile picture
-                        },
-                        child: Container(
-                          height: 38,
-                          width: 38,
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 3,
+                      child: Material(
+                        color: Colors.black,
+                        shape: const CircleBorder(),
+                        clipBehavior: Clip.antiAlias,
+                        borderOnForeground: true,
+                        child: InkWell(
+                          onTap: () {
+                            // Change profile picture
+                          },
+                          child: Container(
+                            height: 38,
+                            width: 38,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 3,
+                              ),
                             ),
-                          ),
-                          child: const Icon(
-                            Icons.camera_alt,
-                            color: Colors.white,
-                            size: 18,
+                            child: const Icon(
+                              Icons.camera_alt,
+                              color: Colors.white,
+                              size: 18,
+                            ),
                           ),
                         ),
                       ),
@@ -117,12 +122,12 @@ class Profile extends StatelessWidget {
                       height: 42,
                       width: 42,
                       decoration: BoxDecoration(
-                        color: Colors.blue.shade50,
+                        color: const Color(0xFFECFDF5),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.person_outline,
-                        color: Colors.blue.shade700,
+                        color: Color(0xFF047857),
                       ),
                     ),
 
@@ -347,7 +352,7 @@ class Profile extends StatelessWidget {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: const BorderSide(
-                color: Colors.blue,
+                color: Color(0xFF10B981),
                 width: 1.5,
               ),
             ),
