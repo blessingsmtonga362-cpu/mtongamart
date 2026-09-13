@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'cards/category_card.dart';
 import 'models/category.dart';
+import 'product.dart';
 class Category extends StatelessWidget {
   const Category({super.key});
 
@@ -34,6 +35,16 @@ class Category extends StatelessWidget {
               width: double.infinity,
               child: CategoryCard(
                 category: categories[0],
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductScreen(
+                        categoryName: categories[0].name,
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
 
@@ -61,6 +72,16 @@ class Category extends StatelessWidget {
 
                 return CategoryCard(
                   category: category,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductScreen(
+                          categoryName: category.name,
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             ),
