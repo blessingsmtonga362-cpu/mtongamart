@@ -49,16 +49,7 @@ class _LandingscreenState extends State<Landingscreen> {
 
           actions: [
 
-            // Search
-            IconButton(
-              onPressed: () {
-                // Open search
-              },
-              icon: const Icon(
-                Icons.search,
-                size: 26,
-              ),
-            ),
+           
 
             // Cart
             ListenableBuilder(
