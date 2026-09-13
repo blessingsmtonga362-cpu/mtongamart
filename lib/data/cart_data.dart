@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mtongamart/models/cartItem.dart';
 import 'package:mtongamart/models/product.dart';
 
-class Cart{
+class CartData extends ChangeNotifier{
   final List<CartItem> items=[];
 
   void addProduct(
@@ -17,8 +17,9 @@ if(existingItem.isNotEmpty){
     items.add(
     CartItem(product: product)
     );}
+    notifyListeners();
   }
 
 }
 
-final Cart cart=Cart();
+final CartData cart=CartData();

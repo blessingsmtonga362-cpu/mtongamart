@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/cart.dart';
+import '../data/cart_data.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key});
@@ -447,3 +447,4 @@ class _CartState extends State<Cart> {
   }
 }
 
+int total = cart.items.length;
