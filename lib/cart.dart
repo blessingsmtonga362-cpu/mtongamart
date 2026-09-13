@@ -10,6 +10,14 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   String selectedDelivery = "shop";
+  String? selectedPayment;
+  final TextEditingController paymentController = TextEditingController();
+
+  @override
+  void dispose() {
+    paymentController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -243,6 +251,52 @@ class _CartState extends State<Cart> {
                       _paymentOption("TNM Mpamba", "assets/images/tnm.jpg"),
                       const SizedBox(height: 10),
                       _paymentOption("National Bank", "assets/images/nb.png"),
+                      
+                      if (selectedPayment != null) ...[
+                        const SizedBox(height: 25),
+                        const Divider(),
+                        const SizedBox(height: 15),
+                        Text(
+                          selectedPayment == "National Bank" 
+                              ? "Account Details" 
+                              : "Phone Number",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        TextField(
+                          controller: paymentController,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            hintText: selectedPayment == "National Bank"
+                                ? "Enter Account Number"
+                                : selectedPayment == "Airtel Money"
+                                    ? "Airtel Number (starts with 09...)"
+                                    : "TNM Number (starts with 08...)",
+                            prefixIcon: Icon(
+                              selectedPayment == "National Bank"
+                                  ? Icons.account_balance_wallet_outlined
+                                  : Icons.phone_android_outlined,
+                              color: const Color(0xFF10B981),
+                            ),
+                            filled: true,
+                            fillColor: Colors.grey.shade50,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: Colors.grey.shade200),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(
+                                color: Color(0xFF10B981),
+                                width: 1.5,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ],
                   ),
                 ),
@@ -337,26 +391,52 @@ class _CartState extends State<Cart> {
   }
 
   Widget _paymentOption(String name, String assetPath) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Colors.grey.shade200),
-      ),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(assetPath, height: 40, width: 40, fit: BoxFit.cover),
+    bool isSelected = selectedPayment == name;
+    return InkWell(
+      onTap: () {
+        setState(() {
+          selectedPayment = name;
+          if (name == "Airtel Money") {
+            paymentController.text = "09";
+          } else if (name == "TNM Mpamba") {
+            paymentController.text = "08";
+          } else {
+            paymentController.clear();
+          }
+        });
+      },
+      borderRadius: BorderRadius.circular(15),
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: isSelected ? const Color(0xFFECFDF5) : Colors.transparent,
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(
+            color: isSelected ? const Color(0xFF10B981) : Colors.grey.shade200,
+            width: isSelected ? 1.5 : 1.0,
           ),
-          const SizedBox(width: 15),
-          Text(
-            name,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-          ),
-          const Spacer(),
-          const Icon(Icons.arrow_forward_ios, size: 14, color: Colors.grey),
-        ],
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(assetPath, height: 40, width: 40, fit: BoxFit.cover),
+            ),
+            const SizedBox(width: 15),
+            Text(
+              name,
+              style: TextStyle(
+                fontSize: 16, 
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
+              ),
+            ),
+            const Spacer(),
+            if (isSelected)
+              const Icon(Icons.check_circle, color: Color(0xFF10B981), size: 20)
+            else
+              const Icon(Icons.arrow_forward_ios, size: 14, color: Colors.grey),
+          ],
+        ),
       ),
     );
   }
