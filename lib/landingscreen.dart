@@ -3,6 +3,7 @@ import 'Landing.dart';
 import 'cart.dart';
 import 'category.dart';
 import 'profile.dart';
+import '../data/cart_data.dart';
 
 class Landingscreen extends StatefulWidget {
   const Landingscreen({super.key});
@@ -30,17 +31,82 @@ class _LandingscreenState extends State<Landingscreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
-      appBar: AppBar(
-        title: Text("MtongaMart",style: TextStyle(fontWeight: FontWeight.bold),),
-        centerTitle: true,
-        actions: [
-          //IconButton(onPressed: (){}, icon: Icon(Icons.search))
-          // ,
-        ],
-        backgroundColor: Colors.lightBlue,
-        foregroundColor: Colors.black,
-        elevation: 5,
-      ),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          elevation: 0,
+
+          titleSpacing: 20,
+
+          title: const Text(
+            "MtongaMart",
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.3,
+            ),
+          ),
+
+          actions: [
+
+            // Search
+            IconButton(
+              onPressed: () {
+                // Open search
+              },
+              icon: const Icon(
+                Icons.search,
+                size: 26,
+              ),
+            ),
+
+            // Cart
+            ListenableBuilder(
+              listenable: cart,
+              builder: (context, child) {
+                return Stack(
+                  children: [
+
+                    IconButton(
+                      onPressed: () {
+                        onSelectedItem(2);
+                      },
+                      icon: const Icon(
+                        Icons.shopping_cart_outlined,
+                        size: 26,
+                      ),
+                    ),
+
+                    Positioned(
+                      right: 6,
+                      top: 6,
+                      child: Container(
+                        height: 18,
+                        width: 18,
+                        decoration: const BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Text(
+                            "${cart.items.length}",
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+
+            const SizedBox(width: 8),
+          ],
+        ),
       drawer: Drawer(
 
         backgroundColor: Colors.white,
