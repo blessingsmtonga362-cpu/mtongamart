@@ -29,7 +29,7 @@ class Landing extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Featured products",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 25)),
-              Text("see all >",style: TextStyle(fontWeight: FontWeight(500),fontSize: 25)),
+
             ]
           ),
           SizedBox(height: 10,),

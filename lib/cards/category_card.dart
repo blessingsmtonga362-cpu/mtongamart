@@ -13,17 +13,21 @@ class CategoryCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: const Color(0xFFBAE6FD),
-          width: 1.5,
-        ),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Stack(
         children: [
+          // Image
           Positioned.fill(
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(16),
               child: Image.asset(
                 category.image,
                 fit: BoxFit.cover,
@@ -32,16 +36,36 @@ class CategoryCard extends StatelessWidget {
             ),
           ),
 
+          // Gradient Overlay for Text Readability
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withOpacity(0.1),
+                    Colors.black.withOpacity(0.7),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          // Category Name
           Positioned(
-            bottom: 8,
-            left: 12,
+            bottom: 15,
+            left: 15,
+            right: 15,
             child: Text(
               category.name,
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
-                color: Colors.black,
+                color: Colors.white,
+                letterSpacing: 0.5,
               ),
             ),
           ),

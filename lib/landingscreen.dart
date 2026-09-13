@@ -49,7 +49,7 @@ class _LandingscreenState extends State<Landingscreen> {
 
           actions: [
 
-           
+
 
             // Cart
             ListenableBuilder(
@@ -75,7 +75,7 @@ class _LandingscreenState extends State<Landingscreen> {
                         height: 18,
                         width: 18,
                         decoration: const BoxDecoration(
-                          color: Colors.red,
+                          color: Color(0xFFF43F5E),
                           shape: BoxShape.circle,
                         ),
                         child: Center(
@@ -173,9 +173,9 @@ class _LandingscreenState extends State<Landingscreen> {
               });
             },
             type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: const Color(0xFF0F172A),
             selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.black,
+            unselectedItemColor: Colors.white70,
 
             items:[
               BottomNavigationBarItem(icon: Icon(Icons.home_outlined),label: "Home"),
