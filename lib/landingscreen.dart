@@ -35,10 +35,8 @@ class _LandingscreenState extends State<Landingscreen> {
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
           elevation: 0,
-
           titleSpacing: 20,
-
-          title: const Text(
+          title: Text(
             "MtongaMart",
             style: TextStyle(
               fontSize: 22,
@@ -48,16 +46,12 @@ class _LandingscreenState extends State<Landingscreen> {
           ),
 
           actions: [
-
-
-
             // Cart
             ListenableBuilder(
               listenable: cart,
               builder: (context, child) {
                 return Stack(
                   children: [
-
                     IconButton(
                       onPressed: () {
                         onSelectedItem(2);
@@ -94,7 +88,6 @@ class _LandingscreenState extends State<Landingscreen> {
                 );
               },
             ),
-
             const SizedBox(width: 8),
           ],
         ),
@@ -129,8 +122,6 @@ class _LandingscreenState extends State<Landingscreen> {
                   ],
                 ),
               ),
-
-
               ListTile(
                 leading: IconButton(onPressed: (){}, icon: Icon(Icons.home,size: 30,)),
                 title: Text("Home",style: TextStyle(fontWeight: FontWeight.bold,fontSize:20),),
