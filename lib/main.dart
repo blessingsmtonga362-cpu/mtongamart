@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mtongamart/landingscreen.dart';
 import 'package:mtongamart/product.dart';
+import 'package:mtongamart/product_details.dart';
 import 'landing.dart';
 
 void main(){
