@@ -4,6 +4,7 @@ import 'cart.dart';
 import 'category.dart';
 import 'profile.dart';
 import '../data/cart_data.dart';
+import 'service/api_service.dart';
 
 class Landingscreen extends StatefulWidget {
   const Landingscreen({super.key});
@@ -126,6 +127,7 @@ class _LandingscreenState extends State<Landingscreen> {
                 leading: IconButton(onPressed: (){}, icon: Icon(Icons.home,size: 30,)),
                 title: Text("Home",style: TextStyle(fontWeight: FontWeight.bold,fontSize:20),),
                 onTap: (){Navigator.pop(context);
+                  ApiService().fetchData();
                   onSelectedItem(0);},
               ),
               ListTile(

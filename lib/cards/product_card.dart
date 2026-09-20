@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/product.dart';
 import '../data/cart_data.dart';
 import '../product_details.dart';
+import '../service/api_service.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -110,6 +111,8 @@ class ProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                     child: InkWell(
                       onTap: () {
+                        ApiService().fetchData();//sample when i was connecting with the backend
+
                         cart.addProduct(product);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
