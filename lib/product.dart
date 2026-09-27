@@ -20,7 +20,23 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  final productService = ProductService();
+
   List<Product>products =[];
+  @override
+  void initState() {
+    super.initState();
+    loadProducts();
+  }
+  Future<void> loadProducts() async {
+   final result = await productService.getProducts();
+   setState(() {
+     products = result;
+   });
+
+  }
+
+
   @override
 
 
