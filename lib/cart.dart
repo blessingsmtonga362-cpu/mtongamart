@@ -83,12 +83,19 @@ class _CartState extends State<Cart> {
                               children: [
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    item.product.image,
-                                    height: 70,
-                                    width: 70,
-                                    fit: BoxFit.cover,
-                                  ),
+                                  child: item.product.image.startsWith('http')
+                                      ? Image.network(
+                                          item.product.image,
+                                          height: 70,
+                                          width: 70,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : Image.asset(
+                                          item.product.image,
+                                          height: 70,
+                                          width: 70,
+                                          fit: BoxFit.cover,
+                                        ),
                                 ),
                                 const SizedBox(width: 12),
                                 Expanded(
@@ -441,5 +448,3 @@ class _CartState extends State<Cart> {
     );
   }
 }
-
-int total = cart.items.length;

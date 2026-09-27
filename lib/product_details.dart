@@ -51,7 +51,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               child: Hero(
                 tag: widget.product.name,
-                child: Image.asset(
+                child: Image.network(
                   widget.product.image,
                   fit: BoxFit.contain,
                 ),

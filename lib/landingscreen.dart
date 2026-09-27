@@ -127,7 +127,7 @@ class _LandingscreenState extends State<Landingscreen> {
                 leading: IconButton(onPressed: (){}, icon: Icon(Icons.home,size: 30,)),
                 title: Text("Home",style: TextStyle(fontWeight: FontWeight.bold,fontSize:20),),
                 onTap: (){Navigator.pop(context);
-                  ApiService().fetchData();
+
                   onSelectedItem(0);},
               ),
               ListTile(

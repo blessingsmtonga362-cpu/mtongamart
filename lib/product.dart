@@ -5,6 +5,7 @@ import 'landing.dart';
 import 'category.dart';
 import 'cart.dart';
 import 'profile.dart';
+import 'service/api_service.dart';
 
 class ProductScreen extends StatefulWidget {
   final String categoryName;
@@ -19,8 +20,11 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  List<Product>products =[];
   @override
-  Widget build(BuildContext context) {
+
+
+Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
