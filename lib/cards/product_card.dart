@@ -6,15 +6,12 @@ import '../service/api_service.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
-
-  const ProductCard({
-    super.key,
-    required this.product,
-  });
+  const ProductCard({super.key,
+  required this.product});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return  GestureDetector(
       onTap: () {
         Navigator.push(
           context,
@@ -43,7 +40,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 child: Hero(
                   tag: product.name,
-                  child: Image.asset(
+                  child: Image.network(
                     product.image,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -111,7 +108,7 @@ class ProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                     child: InkWell(
                       onTap: () {
-                        ApiService().fetchData();//sample when i was connecting with the backend
+
 
                         cart.addProduct(product);
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -146,4 +143,4 @@ class ProductCard extends StatelessWidget {
       ),
     );
   }
-}
+  }
