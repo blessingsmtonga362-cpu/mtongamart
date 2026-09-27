@@ -31,7 +31,7 @@ class _LandingState extends State<Landing> {
         content: Text("Products loaded successfully!"),
         backgroundColor: Colors.green,
         behavior: SnackBarBehavior.floating,
-        duration: Duration(seconds: 1),
+        duration: Duration(seconds: 10),
       ),
     );}
     catch(e){
@@ -40,7 +40,7 @@ class _LandingState extends State<Landing> {
           content: Text("Failed to load products: $e"),
           backgroundColor: Colors.red,
           behavior: SnackBarBehavior.floating,
-          duration: Duration(seconds: 1),
+          duration: Duration(seconds: 10),
         ));
     }
 

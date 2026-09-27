@@ -4,7 +4,6 @@ import 'cart.dart';
 import 'category.dart';
 import 'profile.dart';
 import '../data/cart_data.dart';
-import 'service/api_service.dart';
 
 class Landingscreen extends StatefulWidget {
   const Landingscreen({super.key});
@@ -18,7 +17,7 @@ class _LandingscreenState extends State<Landingscreen> {
 
   final List<Widget> screen = [
     Landing(),
-    Category(),
+    CategoryScreen(),
     Cart(),
     Profile()
   ];

@@ -8,13 +8,15 @@ class Product{
    final double price;
    final double rating;
    final int  reviews;
+   final String category;
 
    Product({
      required this.image,
      required this.name,
      required this.price,
      required this.rating,
-     required this.reviews
+     required this.reviews,
+     required this.category
 });
 
    factory Product.fromJson(Map<String, dynamic> json) {
@@ -24,6 +26,8 @@ class Product{
        price: json['price'] != null ? (json['price'] as num).toDouble() : 0.0,
        rating: json['rating'] != null ? (json['rating'] as num).toDouble() : 0.0,
        reviews: json['reviews'] != null ? (json['reviews'] as num).toInt() : 0,
+       category: json['category'] ?? '',
+
      );
    }
 

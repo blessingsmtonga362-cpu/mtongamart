@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/category.dart';
+
 class CategoryCard extends StatelessWidget {
   final Category category;
   final VoidCallback onTap;
@@ -20,13 +21,39 @@ class CategoryCard extends StatelessWidget {
         onTap: onTap,
         child: Stack(
           children: [
-            // Image
+            // Image (handles both network URLs and local assets)
             Positioned.fill(
-              child: Image.asset(
-                category.image,
-                fit: BoxFit.cover,
-                width: double.infinity,
-              ),
+              child: category.image.startsWith('http')
+                  ? Image.network(
+                      category.image,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: Colors.grey.shade300,
+                          child: const Icon(
+                            Icons.broken_image,
+                            size: 40,
+                            color: Colors.grey,
+                          ),
+                        );
+                      },
+                    )
+                  : Image.asset(
+                      category.image,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: Colors.grey.shade300,
+                          child: const Icon(
+                            Icons.category,
+                            size: 40,
+                            color: Colors.grey,
+                          ),
+                        );
+                      },
+                    ),
             ),
 
             // Gradient Overlay for Text Readability
