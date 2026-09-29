@@ -21,41 +21,26 @@ class _CategoryScreenState extends State<CategoryScreen> {
     super.initState();
     loadCategories();
   }
-
   Future<void> loadCategories() async {
-    setState(() {
-      isLoading = true;
-    });
-
     try {
       final result = await categoryService.getCategories();
-      if (!mounted) return;
       setState(() {
         categories = result;
         isLoading = false;
       });
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Categories loaded successfully!"),
-          backgroundColor: Colors.green,
-          behavior: SnackBarBehavior.floating,
-          duration: Duration(seconds: 2),
-        ),
-      );
     } catch (e) {
-      if (!mounted) return;
-      setState(() {
-        isLoading = false;
-      });
       ScaffoldMessenger.of(context).showSnackBar(
+
         SnackBar(
           content: Text("Failed to load categories: $e"),
           backgroundColor: Colors.red,
           behavior: SnackBarBehavior.floating,
-          duration: const Duration(seconds: 4),
+          duration: const Duration(seconds: 10),
         ),
       );
     }
+
+
   }
 
   @override
@@ -146,11 +131,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProductScreen(
-                        categoryName: categories[0].name,
-                      ),
+                      builder: (context) =>ProductScreen(categoryId:categories[0].id,
+                      categoryName: categories[0].name,)
                     ),
-                  );
+                  ); 
                 },
               ),
             ),
@@ -179,7 +163,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => ProductScreen(
+                            categoryId: category.id,
                             categoryName: category.name,
+
                           ),
                         ),
                       );

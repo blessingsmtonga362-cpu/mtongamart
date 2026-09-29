@@ -6,13 +6,16 @@ import 'category.dart';
 import 'cart.dart';
 import 'profile.dart';
 import 'service/api_service.dart';
+import 'service/category_api.dart';
 
 class ProductScreen extends StatefulWidget {
   final String categoryName;
+  final int categoryId;
 
   const ProductScreen({
     super.key,
     required this.categoryName,
+    required this.categoryId,
   });
 
   @override
@@ -20,7 +23,7 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  final productService = ProductService();
+  final productService = CategoryApi();
 
   List<Product>products =[];
   @override
@@ -29,7 +32,7 @@ class _ProductScreenState extends State<ProductScreen> {
     loadProducts();
   }
   Future<void> loadProducts() async {
-   final result = await productService.getProducts();
+   final result = await productService.getProductsByCategory((widget.categoryId));
    setState(() {
      products = result;
    });
