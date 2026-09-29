@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 class Category {
   final String image;
   final String name;
-  final String slug;
+  final int id;
 
   Category({
     required this.image,
     required this.name,
-    required this.slug
+    required this.id
 });
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
       image: json['image'] ?? '',
       name: json['name'] ?? 'No Name',
-      slug: json['slug'] ?? '',
+      id: json['id'] ,
     );
   }
 }
