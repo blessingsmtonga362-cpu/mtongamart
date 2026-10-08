@@ -3,6 +3,7 @@ import '../models/product.dart';
 import '../data/cart_data.dart';
 import '../product_details.dart';
 import '../service/api_service.dart';
+import '../service/cart_api.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -107,18 +108,30 @@ class ProductCard extends StatelessWidget {
                     color: const Color(0xFF10B981),
                     borderRadius: BorderRadius.circular(8),
                     child: InkWell(
-                      onTap: () {
-
-
+                      onTap: () async {
                         cart.addProduct(product);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text("${product.name} added to cart!"),
-                            backgroundColor: const Color(0xFF10B981),
-                            behavior: SnackBarBehavior.floating,
-                            duration: const Duration(seconds: 1),
-                          ),
-                        );
+                        try {
+                          await CartService().addToCart(product.id, quantity: 1);
+                          if (!context.mounted) return;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("${product.name} added to cart!"),
+                              backgroundColor: const Color(0xFF10B981),
+                              behavior: SnackBarBehavior.floating,
+                              duration: const Duration(seconds: 1),
+                            ),
+                          );
+                        } catch (e) {
+                          if (!context.mounted) return;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Failed to sync cart: $e"),
+                              backgroundColor: Colors.red,
+                              behavior: SnackBarBehavior.floating,
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
+                        }
                       },
                       borderRadius: BorderRadius.circular(8),
                       child: Container(
