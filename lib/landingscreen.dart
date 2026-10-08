@@ -18,7 +18,7 @@ class _LandingscreenState extends State<Landingscreen> {
   final List<Widget> screen = [
     Landing(),
     CategoryScreen(),
-    Cart(),
+    CartScreen(),
     Profile()
   ];
   void onSelectedItem(int index){
