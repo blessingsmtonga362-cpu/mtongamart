@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:mtongamart/models/cartItem.dart';
 import 'package:mtongamart/models/product.dart';
 
-class CartData extends ChangeNotifier{
-  final List<CartItem> items=[];
+class CartData extends ChangeNotifier {
+  final List<CartItem> items = [];
 
-  void addProduct(
-      Product product
-      ){
+  void addProduct(Product product) {
     final existingItem = items.where(
-          (item) => item.product == product,
+      (item) => item.product.name == product.name,
     );
-if(existingItem.isNotEmpty){
-  existingItem.first.quantity +=1;
-}else{
-    items.add(
-    CartItem(product: product)
-    );}
+    if (existingItem.isNotEmpty) {
+      existingItem.first.quantity += 1;
+    } else {
+      items.add(
+        CartItem(product: product, quantity: 1, id: 0),
+      );
+    }
     notifyListeners();
   }
 
@@ -38,7 +37,6 @@ if(existingItem.isNotEmpty){
     items.remove(item);
     notifyListeners();
   }
-
 }
 
-final CartData cart=CartData();
+final CartData cart = CartData();
