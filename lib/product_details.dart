@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'models/product.dart';
 import 'data/cart_data.dart';
+import 'service/cart_api.dart';
 
 class ProductDetails extends StatefulWidget {
   final Product product;
@@ -203,16 +204,30 @@ class _ProductDetailsState extends State<ProductDetails> {
                 color: const Color(0xFF10B981),
                 borderRadius: BorderRadius.circular(12),
                 child: InkWell(
-                  onTap: () {
+                  onTap: () async {
                     cart.addProduct(widget.product);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text("${widget.product.name} added to cart!"),
-                        backgroundColor: const Color(0xFF10B981),
-                        behavior: SnackBarBehavior.floating,
-                        duration: const Duration(seconds: 1),
-                      ),
-                    );
+                    try {
+                      await CartService().addToCart(widget.product.id, quantity: 1);
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("${widget.product.name} added to cart!"),
+                          backgroundColor: const Color(0xFF10B981),
+                          behavior: SnackBarBehavior.floating,
+                          duration: const Duration(seconds: 1),
+                        ),
+                      );
+                    } catch (e) {
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Failed to sync cart: $e"),
+                          backgroundColor: Colors.red,
+                          behavior: SnackBarBehavior.floating,
+                          duration: const Duration(seconds: 2),
+                        ),
+                      );
+                    }
                   },
                   borderRadius: BorderRadius.circular(12),
                   child: Container(
